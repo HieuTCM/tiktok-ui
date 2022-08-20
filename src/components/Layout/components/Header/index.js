@@ -2,6 +2,7 @@ import images from '~/assets/images';
 import styles from './Header.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
@@ -29,7 +30,8 @@ function Header() {
                 <img src={images.logo} alt="Tik Tok"></img>
 
                 <Tippy
-                    visible={searchResults.length > 0}
+                    /*visible={searchResults.length > 0} */
+                    visible={false}
                     interactive={true}
                     render={(attrs) => (
                         <div
@@ -66,7 +68,10 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </header>
     );
