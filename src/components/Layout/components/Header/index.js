@@ -4,34 +4,44 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 
-import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical,
+    faKeyboard,
     faMagnifyingGlass,
+    faQuestionCircle,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
+import Menu from '~/components/Popper/Menu';
 const cx = classNames.bind(styles);
 
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'English',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faQuestionCircle} />,
+        title: 'FeedBack and help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard shortcut',
+    },
+];
+
 function Header() {
-    const [searchResults, setSearchResults] = useState([]);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResults([1, 2, 3, 4]);
-        }, 0);
-    }, []);
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="Tik Tok"></img>
 
                 <Tippy
-                    /*visible={searchResults.length > 0} */
-                    visible={false}
                     interactive={true}
                     render={(attrs) => (
                         <div
@@ -71,6 +81,12 @@ function Header() {
                 <div className={cx('actions')}>
                     <Button text>Upload</Button>
                     <Button primary>Log in</Button>
+
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('more-btn')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
